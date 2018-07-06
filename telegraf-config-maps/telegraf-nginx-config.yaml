@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegraf-nginx-config
+  namespace: default
+data:
+  nginx.conf: |
+    [[inputs.nginx]]
+      ## An array of Nginx status URI to gather stats.
+      urls = ["http://localhost/basic_status"]
+
+      ## Optional SSL Config
+      # ssl_ca = "/path/to/ca.pem"
+      # ssl_cert = "/path/to/cert.pem"
+      # ssl_key = "/path/to/key.pem"
+      ## Use SSL but skip chain & host verification
+      # insecure_skip_verify = false
+
+      ## HTTP response timeout (default: 5s)
+      response_timeout = "5s"
+
+      # Specify optional tags to be applied to all metrics for this plugin
+      # NOTE: Order matters, this needs to be at the end of the plugin definition
+      # [[inputs.nginx.tags]]
+        # tag1 = "foo"
+        # tag2 = "bar"

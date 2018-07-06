@@ -1,0 +1,48 @@
+apiVersion: apps/v1beta2
+# Kubernetes versions after 1.9.0 should use apps/v1
+# Kubernetes versions before 1.8.0 should use apps/v1beta1 or extensions/v1beta1
+kind: Deployment
+metadata:
+  name: telegraf-APPLICATION
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telegraf-APPLICATION
+  template:
+    metadata:
+      labels:
+        app: telegraf-APPLICATION
+    spec:
+      containers:
+      - name: telegraf
+        image: wavefronthq/telegraf
+        env:
+        - name: WAVEFRONT_PROXY
+          value: wavefront-proxy.default
+        - name: INTERVAL
+          value: 60s
+        - name: METRIC_SOURCE_NAME
+          # This can be change to use the Deployment / Statefulset name instead as a simple value
+          # The metric source name should not be an ephemeral value
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        resources:
+          requests:
+            memory: 30Mi
+            cpu: 100m
+          limits:
+            memory: 50Mi
+            cpu: 200m
+        volumeMounts:
+        - name: telegraf-d
+          mountPath: /etc/telegraf/telegraf.d
+      volumes:
+      - name: telegraf-d
+        projected:
+          sources:
+          - configMap:
+              name: telegraf-APPLICATION-config
+

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegraf-redis-config
+  namespace: default
+data:
+  redis.conf: |
+    [[inputs.redis]]
+      ## specify servers via a url matching:
+      ##  [protocol://][:password]@address[:port]
+      ##  e.g.
+      ##    tcp://localhost:6379
+      ##    tcp://:password@192.168.99.100
+      ##
+      ## If no servers are specified, then localhost is used as the host.
+      ## If no port is specified, 6379 is used
+      servers = ["tcp://localhost:6379"]
+
+      # Specify optional tags to be applied to all metrics for this plugin
+      # NOTE: Order matters, this needs to be at the end of the plugin definition
+      # [[inputs.redis.tags]]
+        # tag1 = "foo"
+        # tag2 = "bar"
