@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: telegraf
-        image: puckpuck/wavefront-telegraf
+        image: wavefront/telegraf
         env:
         - name: WAVEFRONT_PROXY
           value: wavefront-proxy.default
