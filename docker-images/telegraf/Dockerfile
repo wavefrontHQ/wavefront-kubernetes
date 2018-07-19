@@ -1,6 +1,6 @@
 # Telegraf agent configured for Wavefront output intended to be used as it's own deployment to collect metrics
 
-FROM telegraf
+FROM telegraf:1.7.1
 
 ENV WAVEFRONT_PROXY=wavefront-proxy
 ENV WAVEFRONT_PROXY_PORT=2878
