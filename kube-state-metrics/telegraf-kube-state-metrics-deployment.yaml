@@ -52,3 +52,6 @@ data:
     [[inputs.prometheus]]
       urls = ["http://kube-state-metrics:8080/metrics"]
       namedrop = ["kube_namespace_*"]
+
+      [[inputs.prometheus.tags]]
+        cluster = "CLUSTER_NAME"

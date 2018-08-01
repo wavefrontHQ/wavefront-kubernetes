@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegraf-prometheus-k8s-service-config
+  namespace: default
+data:
+  prometheus.conf: |
+    [[inputs.prometheus]]
+      ## An array of Kubernetes services to scrape metrics from.
+      kubernetes_services = ["http://my-service-dns.my-namespace:8080/metrics"]
+
+      ## Use bearer token for authorization
+      # bearer_token = /path/to/bearer/token
+
+      ## Specify timeout duration for slower prometheus clients (default is 3s)
+      # response_timeout = "3s"
+
+      ## Optional SSL Config
+      # ssl_ca = /path/to/cafile
+      # ssl_cert = /path/to/certfile
+      # ssl_key = /path/to/keyfile
+      ## Use SSL but skip chain & host verification
+      # insecure_skip_verify = false
+
+      # Specify optional tags to be applied to all metrics for this plugin
+      # NOTE: Order matters, this needs to be at the end of the plugin definition
+      # [[inputs.prometheus.tags]]
+        # tag1 = "foo"
+        # tag2 = "bar"
