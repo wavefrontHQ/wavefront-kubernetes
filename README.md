@@ -45,6 +45,7 @@ with the following configuration setup.
 	- `type` should not be specified
 	- make sure your service selector will select the required pods
 	- you only need to expose the Prometheus http-metrics port to be scraped
+
 Sample service definition:
 ```yaml
 kind: Service
