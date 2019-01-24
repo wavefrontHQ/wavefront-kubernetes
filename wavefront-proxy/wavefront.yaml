@@ -38,6 +38,7 @@ spec:
           protocol: TCP
         # Uncomment the below lines to consume Zipkin/Istio traces
         #- containerPort: 9411
+        #  protocol: TCP
         securityContext:
           privileged: false
 ---
