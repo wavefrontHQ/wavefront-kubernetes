@@ -18,5 +18,3 @@ items:
         name: http
     selector:
       app: wavefront-proxy
-
-# TODO:  At the end modify to "app: jaeger" so that using port forwarding i can check jaeger's UI.
