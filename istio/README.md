@@ -1,6 +1,6 @@
-# Re-deploy Istio's zipkin service on Kubernetes
+# Re-direct traces in Istio to Wavefront
 
-From your kubenetes cluster run the below steps:
+From your Kubernetes cluster run the below steps:
 
 ## 1. Delete existing zipkin service
 ```
