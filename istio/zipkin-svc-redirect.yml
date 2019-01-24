@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: zipkin
+    namespace: istio-system
+    labels:
+      app: wavefront-proxy
+  spec:
+    type: ExternalName
+    externalName: wavefront-proxy.default.svc.cluster.local
+    ports:
+      - port: 9411
+        targetPort: 9411
+        protocol: TCP
+        name: http
+    selector:
+      app: wavefront-proxy
+
+# TODO:  At the end modify to "app: jaeger" so that using port forwarding i can check jaeger's UI.
