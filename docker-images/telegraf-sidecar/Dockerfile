@@ -1,9 +1,17 @@
 # Telegraf agent configured for Wavefront output intended to be used in a sidecar config
 
-FROM telegraf:1.8.1
+FROM telegraf:1.9.4
 
 ENV WAVEFRONT_PROXY=wavefront-proxy
 ENV WAVEFRONT_PROXY_PORT=2878
+ENV PREFIX=
+ENV SIMPLE_FIELDS=false
+ENV METRIC_SEPARATOR=.
+ENV CONVERT_PATHS=true
+ENV USE_REGEX=false
+ENV SOURCE_OVERRIDE=address
+ENV CONVERT_BOOL=true
+
 ENV INTERVAL=60s
 
 COPY telegraf.conf /etc/telegraf/telegraf.conf
