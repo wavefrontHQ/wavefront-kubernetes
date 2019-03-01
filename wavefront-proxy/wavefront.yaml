@@ -48,6 +48,7 @@ metadata:
   name: wavefront-proxy
   labels:
     app: wavefront-proxy
+  namespace: default
 spec:
   ports:
   - name: wavefront
