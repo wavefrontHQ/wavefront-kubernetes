@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: discovery-config
+  namespace: wavefront-collector
+data:
+  config.yaml: |
+    global:
+      discovery_interval: 5m
+    prom_configs:
+    - name: kube-dns-discovery
+      labels:
+        k8s-app: kube-dns
+      port: 10054
+      path: /metrics
+      scheme: http
+      prefix: kube.dns.
+      tags:
+        env: prod
+    - name: kube-apiserver
+      resourceType: apiserver
+      port: 443
+      path: /metrics
+      scheme: https
+      prefix: kube.apiserver.
+      tags:
+        env: eks-dev
+    - name: appmesh-colorgateway
+      labels:
+        app: colorgateway
+      port: 9901
+      path: /stats/prometheus
+      prefix: aws.appmesh.
+      tags:
+        env: eks-dev
+    - name: appmesh-colortellers
+      labels:
+        app: colorteller
+      port: 9901
+      path: /stats/prometheus
+      prefix: aws.appmesh.
+      tags:
+        env: eks-dev
