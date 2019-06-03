@@ -1,15 +1,12 @@
 # wavefront-kubernetes
-Kubernetes definitions and templates for Wavefront monitoring
+This repository contains definitions and templates for monitoring Kubernetes using Wavefront.
 
 ## Wavefront Proxy (required)
 1. Deploy a [Wavefront Proxy](wavefront-proxy/)
 	- Update `YOUR_CLUSTER` and `YOUR_API_TOKEN` according to your instance of Wavefront
 
 ## Kubernetes system metrics
-1. Deploy [Heapster](heapster/) to get standard Kubernetes metrics
-	- Update `CLUSTER_NAME` for your cluster
-1. Deploy [kube-state-metrics](kube-state-metrics/) to get state metrics
-	- Update `CLUSTER_NAME` for your cluser
+Refer to the [Wavefront Kubernetes Integration](https://docs.wavefront.com/kubernetes.html) for core Kubernetes monitoring.
 
 ## Pod monitoring
 
@@ -28,7 +25,7 @@ Use the [Telegraf Sidecar container template](telegraf-sidecar/) to add Telegraf
 
 
 ### Usage: Standalone pod
-When sidecar monitoring is not practical, use the standard [Telegraf Deployment template](telegraf/) to monitor the service. 
+When sidecar monitoring is not practical, use the standard [Telegraf Deployment template](telegraf/) to monitor the service.
 Prometheus endpoints can be scraped using this method.
 - Change references to `APPLICATION` to match your application name
 - Optionally update the `METRIC_SOURCE_NAME` environment variable to specify a metric source (default is to use Node name)
@@ -60,4 +57,3 @@ spec:
   - name: http-metrics
     port: 8080
 ```
-
