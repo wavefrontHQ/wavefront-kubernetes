@@ -98,10 +98,6 @@ resource "kubernetes_deployment" "wavefront-proxy-deployment" {
               name = "tcp-8094"
               container_port = 8094
             }
-            port {
-              name = "tcp-8186"
-              container_port = 8186
-            }
             volume_mount {
               name = "telegraf-d"
               mount_path = "/etc/telegraf/telegraf.d"
@@ -109,13 +105,6 @@ resource "kubernetes_deployment" "wavefront-proxy-deployment" {
             security_context {
               run_as_user = 2
               allow_privilege_escalation = false
-            }
-            readiness_probe {
-              tcp_socket {
-                 port = "8186"
-              } 
-              initial_delay_seconds = 3
-              period_seconds        = 3
             }
           }
           volume {
