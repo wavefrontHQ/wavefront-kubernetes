@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
       - name: wavefront-proxy
-        image: wavefronthq/proxy:latest
-        imagePullPolicy: Always
+        image: wavefronthq/proxy:5.7
+        imagePullPolicy: IfNotPresent
         env:
         - name: WAVEFRONT_URL
           value: https://YOUR_CLUSTER.wavefront.com/api/
