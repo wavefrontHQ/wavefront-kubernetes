@@ -1,16 +1,12 @@
 # Need to change YOUR_CLUSTER and YOUR_API_TOKEN accordingly
-
 apiVersion: apps/v1
-# Kubernetes versions after 1.9.0 should use apps/v1
-# Kubernetes version 1.8.x should use apps/v1beta2
-# Kubernetes versions before 1.8.0 should use apps/v1beta1
 kind: Deployment
 metadata:
   labels:
     app: wavefront-proxy
     name: wavefront-proxy
   name: wavefront-proxy
-  namespace: default
+  namespace: wavefront-collector
 spec:
   replicas: 1
   selector:
@@ -23,7 +19,7 @@ spec:
     spec:
       containers:
       - name: wavefront-proxy
-        image: projects.registry.vmware.com/tanzu_observability/proxy:10.12
+        image: projects.registry.vmware.com/tanzu_observability/proxy:10.13
         imagePullPolicy: IfNotPresent
         env:
         - name: WAVEFRONT_URL
@@ -48,7 +44,7 @@ metadata:
   name: wavefront-proxy
   labels:
     app: wavefront-proxy
-  namespace: default
+  namespace: wavefront-collector
 spec:
   ports:
   - name: wavefront
