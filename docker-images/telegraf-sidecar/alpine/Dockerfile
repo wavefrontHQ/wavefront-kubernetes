@@ -1,6 +1,6 @@
 # Telegraf agent configured for Wavefront output intended to be used in a sidecar config
 
-FROM telegraf:1.24.2-alpine
+FROM telegraf:1.28.2-alpine
 
 ENV WAVEFRONT_PROXY=wavefront-proxy
 ENV WAVEFRONT_PROXY_PORT=2878
